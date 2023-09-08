@@ -68,9 +68,36 @@
                 font-size: 24px;
             }
         }
+        @media screen and (min-width: 768px) {
+    img {
+        max-width: 15%; /* Reduzir a largura da imagem em 30% */
+        margin-bottom: 10px; /* Diminuir a margem inferior da imagem */
+    }
+}
+
     </style>
 </head>
 <body>
+    <script>
+    // Função para salvar a posição atual da rolagem
+    function saveScrollPosition() {
+        sessionStorage.setItem('scrollPosition', window.scrollY);
+    }
+
+    // Função para restaurar a posição da rolagem após o refresh
+    function restoreScrollPosition() {
+        const scrollPosition = sessionStorage.getItem('scrollPosition');
+        if (scrollPosition) {
+            window.scrollTo(0, scrollPosition);
+        }
+    }
+
+    // Registre a função de salvamento ao sair da página
+    window.addEventListener('beforeunload', saveScrollPosition);
+
+    // Restaure a posição da rolagem após o refresh
+    window.addEventListener('load', restoreScrollPosition);
+</script>
 <img src="logo.png" alt="Logo da sua empresa">
 <h1>Consultar Horários Disponíveis</h1>
 

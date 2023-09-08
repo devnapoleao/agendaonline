@@ -4,7 +4,6 @@ $host = "localhost";
 $user = "root";
 $password = "";
 $database = "agenda";
-
 // Conexão com o banco de dados
 $conn = new mysqli($host, $user, $password, $database);
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="1.5">
+    <meta http-equiv="refresh" content="1">
     <title>Consultar Dias Disponíveis</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
     <style>
@@ -117,10 +117,36 @@
         a:hover {
             text-decoration: underline;
         }
+        @media screen and (min-width: 768px) {
+    img {
+        max-width: 15%; /* Reduzir a largura da imagem em 30% */
+        margin-bottom: 10px; /* Diminuir a margem inferior da imagem */
+    }
+}
 
     </style>
 </head>
 <body>
+<script>
+    // Função para salvar a posição atual da rolagem
+    function saveScrollPosition() {
+        sessionStorage.setItem('scrollPosition', window.scrollY);
+    }
+
+    // Função para restaurar a posição da rolagem após o refresh
+    function restoreScrollPosition() {
+        const scrollPosition = sessionStorage.getItem('scrollPosition');
+        if (scrollPosition) {
+            window.scrollTo(0, scrollPosition);
+        }
+    }
+
+    // Registre a função de salvamento ao sair da página
+    window.addEventListener('beforeunload', saveScrollPosition);
+
+    // Restaure a posição da rolagem após o refresh
+    window.addEventListener('load', restoreScrollPosition);
+</script>
 <img src="logo.png" alt="Logo da sua empresa">
     <h1>Consultar Dias Disponíveis</h1>
 
@@ -130,7 +156,6 @@
   $user = "root";
   $password = "";
   $database = "agenda";
-
 // Conexão com o banco de dados
 $conn = new mysqli($host, $user, $password, $database);
 
@@ -162,11 +187,11 @@ if ($conn->connect_error) {
     $conn->close();
     ?>
         <script>
-        // Função para recarregar a página a cada 1.5 segundos
+        // Função para recarregar a página a cada 1 segundos
         function atualizarPagina() {
             setTimeout(function () {
                 location.reload();
-            }, 1500); // 1500 milissegundos = 1,5 segundos
+            }, 1000); // 1500 milissegundos = 1 segundos
         }
 
         // Chama a função de atualização quando a página carrega

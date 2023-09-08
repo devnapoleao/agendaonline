@@ -110,6 +110,12 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: #004c00; /* Cor mais escura no hover */
 }
+@media screen and (min-width: 768px) {
+    img {
+        max-width: 15%; /* Reduzir a largura da imagem em 30% */
+        margin-bottom: 10px; /* Diminuir a margem inferior da imagem */
+    }
+}
 
     </style>
 </head>
@@ -137,7 +143,7 @@ if (isset($_GET['mes']) && isset($_GET['dia']) && isset($_GET['horario'])) {
 
         // Configurações de email
         $to = 'contato.napoleao2023@gmail.com';
-        $subject = 'Sousa DEV - Agendamento de Horário';
+        $subject = 'Agendamento de Horário';
         $message = "Mês: $mes\nDia: $dia\nHorário: $horario\nNome: $nome\nWhatsApp: $whatsapp";
         $headers = 'From: agendamento@agendado.me' . "\r\n";
 

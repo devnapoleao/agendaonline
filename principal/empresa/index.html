@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
     <title>Cadastre um Horário Disponível</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
     <style>
@@ -16,6 +18,8 @@
         align-items: center;
         padding: 20px;
     }
+/* Estilo para tela de computador (desktop) */
+
 
     h1 {
         font-size: 24px;
@@ -55,17 +59,17 @@
         cursor: pointer;
         font-size: 18px;
     }
-    input[type="text"]#horario {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    margin-bottom: 20px;
-    border: 2px solid #006600;
-    border-radius: 5px;
-    box-sizing: border-box; /* Adicione esta linha para incluir a borda no cálculo de largura */
-}
+    input[type="submit"], a.btn {
+        background-color: #006600; /* Fundo verde escuro */
+        color: #fff; /* Texto branco */
+        cursor: pointer;
+        font-size: 18px;
+        text-align: center;
+        display: inline-block;
+        text-decoration: none; /* Remova o sublinhado de links */
+    }
 
-    input[type="submit"]:hover {
+    input[type="submit"]:hover, a.btn:hover {
         background-color: #004c00; /* Cor mais escura no hover */
     }
 
@@ -78,6 +82,33 @@ img {
     margin-bottom: 20px; /* Espaço abaixo da logo */
 }
 
+/* Estilize o botão "Mostrar Último Cadastro" */
+.btn {
+    background-color: #006600; /* Fundo verde escuro */
+    color: #fff; /* Texto branco */
+    cursor: pointer;
+    font-size: 18px;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    background-color: #004c00; /* Cor mais escura no hover */
+}
+a.btn {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    width: 50%; /* Ajuste a largura conforme necessário */
+}
+/* Estilo para tela de computador (desktop) com largura maior que 768 pixels */
+@media screen and (min-width: 768px) {
+    img {
+        max-width: 15%; /* Reduzir a largura da imagem em 30% */
+        margin-bottom: 10px; /* Diminuir a margem inferior da imagem */
+    }
+}
 
 </style>
 
@@ -142,9 +173,13 @@ img {
             <label for="horario">Horário:</label>
             <input type="text" name="horario" id="horario" placeholder="Ex: 09:00 às 10:00">
             <input type="submit" value="Cadastrar">
+            <!-- Botão de redirecionamento -->
+            <a href="https://agendado.me/fisiogerlan/usuario/index.php" class="btn">Horários cadastrados</a>
         </form>
     </form>
 
+    
+        
 </body>
 </html>
 

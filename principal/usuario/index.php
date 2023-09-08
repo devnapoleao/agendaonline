@@ -93,6 +93,13 @@
                 margin-right: 0;
             }
         }
+        @media screen and (min-width: 768px) {
+    img {
+        max-width: 15%; /* Reduzir a largura da imagem em 30% */
+        margin-bottom: 10px; /* Diminuir a margem inferior da imagem */
+    }
+}
+
     </style>
 </head>
 <body>
