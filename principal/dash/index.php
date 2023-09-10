@@ -87,25 +87,20 @@ $caminhoLogo = obterCaminhoLogo($emailUsuario);
     
     <!-- Funcionalidades da Dashboard -->
 
-    <h2>Cadastrar Horário</h2>
-    <!-- Adicione aqui o código para a funcionalidade "Cadastrar Horário" -->
-
-    <h2>Cadastrar Serviço</h2>
+   <!-- Botão estilizado -->
+   <a class="btn" href="cadastrohorario.php">Cadastrar Horário</a>
+   
     <!-- Adicione aqui o código para a funcionalidade "Cadastrar Serviço" -->
 
-    <h2>Cadastrar Equipe</h2>
-    <!-- Adicione aqui o código para a funcionalidade "Cadastrar Equipe" -->
 
-    <h2>Cadastro do Agendamento</h2>
-    <!-- Adicione aqui o código para a funcionalidade "Cadastro do Agendamento" -->
+       <!-- Botão estilizado -->
+   <a class="btn" href="cadastrarequipe.php">Cadastrar Equipe</a>
 
-    <h2>Calendário</h2>
-    <!-- Adicione aqui o código para exibir um calendário com os meses e dias -->
-    
-    <h2>Horários Agendados</h2>
-    <!-- Adicione aqui o código para exibir uma tabela com os horários agendados -->
+      <!-- Botão estilizado -->
+      <a class="btn" href="cadastroservico.php">Cadastrar Serviço</a>
 
-    <h2>Horários Cadastrados</h2>
-    <!-- Adicione aqui o código para exibir uma tabela com os horários cadastrados -->
+          <!-- Botão estilizado -->
+          <a class="btn" href="cadastroagendamento.php">Cadastrar Agendamento</a>
+
 </body>
 </html>

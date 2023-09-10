@@ -129,12 +129,22 @@ $linkIndicacao = "https://localhost/fisiogerlan/novas.php?indicado=" . urlencode
 
     <!-- Adicione aqui o código para a funcionalidade "Cadastrar Horário" -->
 
-    <h2>Ganhos por indicação: </h2>
-    <!-- Adicione aqui o código para a funcionalidade "Cadastrar Serviço" -->
+    <h2>Quantidade de Indicações: </h2>
+    <?php
+    // Consulta SQL para contar quantas vezes o nome da empresa se repete na coluna empresaindicadora
+    $sql_count = "SELECT COUNT(*) as quantidade FROM empresas WHERE empresaindicadora = '$nomeEmpresa'";
+    
+    $result = $conn->query($sql_count);
+    $row = $result->fetch_assoc();
+    $quantidade_indicacoes = $row['quantidade'];
 
-    <h2>Valores Liberados para receber: </h2>
-    <!-- Adicione aqui o código para a funcionalidade "Cadastrar Equipe" -->
+    echo "<p>Quantidade de indicações para '$nomeEmpresa': $quantidade_indicacoes</p>";
+    // Calcula o valor a receber
+$valor_a_receber = $quantidade_indicacoes * 15.00;
 
+// Exibe o valor formatado em reais (R$)
+echo "<p>Valor a receber para '$nomeEmpresa': R$ " . number_format($valor_a_receber, 2, ',', '.') . "</p>";
+    ?>
    
 </body>
 </html>
