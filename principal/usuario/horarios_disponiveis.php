@@ -109,9 +109,9 @@ if (isset($_GET['mes']) && isset($_GET['dia'])) {
 
     // Configuração do banco de dados
     $host = "localhost";
-    $user = "root";
-    $password = "";
-    $database = "agenda";
+    $user = "u739537864_fisio04";
+    $password = "uj#4udnj!JUN!";
+    $database = "u739537864_fisio04";
 
     // Conexão com o banco de dados
     $conn = new mysqli($host, $user, $password, $database);

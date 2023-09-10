@@ -142,8 +142,8 @@ if (isset($_GET['mes']) && isset($_GET['dia']) && isset($_GET['horario'])) {
         $whatsapp = $_POST['whatsapp'];
 
         // Configurações de email
-        $to = 'contato.napoleao2023@gmail.com';
-        $subject = 'Agendamento de Horário';
+        $to = 'fisiomaisfinanceiro@hotmail.com';
+        $subject = 'Gerlan Peixoto - Instrutor - Agendamento de Horário';
         $message = "Mês: $mes\nDia: $dia\nHorário: $horario\nNome: $nome\nWhatsApp: $whatsapp";
         $headers = 'From: agendamento@agendado.me' . "\r\n";
 
@@ -154,9 +154,9 @@ if (isset($_GET['mes']) && isset($_GET['dia']) && isset($_GET['horario'])) {
 
             // Conexão com o banco de dados
             $host = "localhost";
-            $user = "root";
-            $password = "";
-            $database = "agenda";
+            $user = "u739537864_fisio04";
+            $password = "uj#4udnj!JUN!";
+            $database = "u739537864_fisio04";
 
             $conn = new mysqli($host, $user, $password, $database);
 
