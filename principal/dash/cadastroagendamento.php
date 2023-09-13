@@ -76,14 +76,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "Por favor, preencha todos os campos antes de enviar o formulário.";
     }
 }
-?>
 
+// Obtém o nome da empresa
+$nomeEmpresa = obterNomeEmpresa($emailUsuario, $conn);
+
+// Função para obter o caminho da logomarca
+function obterCaminhoLogo($emailUsuario) {
+    $targetDir = "../logos/"; // Diretório onde as logomarcas estão armazenadas (subindo um nível para a pasta ao lado)
+    $logoNome = $emailUsuario . ".png"; // Nome do arquivo (baseado no email)
+
+    // Verificar se o arquivo da logomarca existe no diretório de logomarcas
+    if (file_exists($targetDir . $logoNome)) {
+        return $targetDir . $logoNome;
+    } else {
+        return $targetDir . "logo_padrao.png"; // Nome da logomarca padrão
+    }
+}
+
+// Obtém o caminho da logomarca
+$caminhoLogo = obterCaminhoLogo($emailUsuario);
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Cadastro de Agendamento</title>
 </head>
 <body>
+        
+    <!-- Exibe a logomarca -->
+    <img src="<?php echo $caminhoLogo; ?>" alt="Logomarca" width="200">
+    <br>
     <h1>Cadastro de Agendamento - <?php echo $nomeEmpresa; ?></h1>
 
     <form action="" method="POST">
@@ -136,22 +159,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <br>
 
 
-
-
 <?php
 // Substitua 'sua_conexao' pela sua conexão com o banco de dados
-$sqlEmailEmpresa = "SELECT email FROM empresas WHERE empresa = '$nomeEmpresa'";
-$resultEmailEmpresa = $conn->query($sqlEmailEmpresa);
+
+// Consulta para obter o email da empresa
+$sqlEmailEmpresa = "SELECT email FROM empresas WHERE empresa = ?";
+$stmtEmailEmpresa = $conn->prepare($sqlEmailEmpresa);
+$stmtEmailEmpresa->bind_param("s", $nomeEmpresa);
+$stmtEmailEmpresa->execute();
+$resultEmailEmpresa = $stmtEmailEmpresa->get_result();
 
 if ($resultEmailEmpresa->num_rows > 0) {
     $rowEmailEmpresa = $resultEmailEmpresa->fetch_assoc();
     $emailEmpresa = $rowEmailEmpresa['email'];
 
-    // Agora, você tem o email da empresa, pode usar isso para buscar os meses disponíveis
-    $sqlMesesDisponiveis = "SELECT DISTINCT mes FROM horarios_disponiveis WHERE empresa = '$emailEmpresa'";
-    $resultMesesDisponiveis = $conn->query($sqlMesesDisponiveis);
+    // Agora que você tem o email da empresa, pode usar isso para buscar os meses disponíveis
+    $sqlMesesDisponiveis = "SELECT DISTINCT mes FROM horarios_disponiveis WHERE empresa = ?";
+    $stmtMesesDisponiveis = $conn->prepare($sqlMesesDisponiveis);
+    $stmtMesesDisponiveis->bind_param("s", $emailEmpresa);
+    $stmtMesesDisponiveis->execute();
+    $resultMesesDisponiveis = $stmtMesesDisponiveis->get_result();
 ?>
-
 
 <label for="mes">Mês Disponível:</label>
 <select name="mes" id="mes" required>
@@ -159,6 +187,44 @@ if ($resultEmailEmpresa->num_rows > 0) {
     <?php
     while ($rowMes = $resultMesesDisponiveis->fetch_assoc()) {
         echo '<option value="' . $rowMes['mes'] . '">' . $rowMes['mes'] . '</option>';
+    }
+    ?>
+</select>
+<br>
+<?php
+} else {
+    echo "Empresa não encontrada";
+}
+?>
+
+<?php
+// Substitua 'sua_conexao' pela sua conexão com o banco de dados
+
+// Consulta para obter o email da empresa
+$sqlEmailEmpresa = "SELECT email FROM empresas WHERE empresa = ?";
+$stmtEmailEmpresa = $conn->prepare($sqlEmailEmpresa);
+$stmtEmailEmpresa->bind_param("s", $nomeEmpresa);
+$stmtEmailEmpresa->execute();
+$resultEmailEmpresa = $stmtEmailEmpresa->get_result();
+
+if ($resultEmailEmpresa->num_rows > 0) {
+    $rowEmailEmpresa = $resultEmailEmpresa->fetch_assoc();
+    $emailEmpresa = $rowEmailEmpresa['email'];
+
+    // Agora, você tem o email da empresa, pode usar isso para buscar os dias disponíveis
+    $sqlDiasDisponiveis = "SELECT DISTINCT dia FROM horarios_disponiveis WHERE empresa = ? AND mes = ?";
+    $stmtDiasDisponiveis = $conn->prepare($sqlDiasDisponiveis);
+    $stmtDiasDisponiveis->bind_param("ss", $emailEmpresa, $mes_que_escolheu);
+    $stmtDiasDisponiveis->execute();
+    $resultDiasDisponiveis = $stmtDiasDisponiveis->get_result();
+?>
+
+<label for="dia">Dia Disponível:</label>
+<select name="dia" id="dia" required>
+    <option value="">Selecione um dia disponível</option>
+    <?php
+    while ($rowDia = $resultDiasDisponiveis->fetch_assoc()) {
+        echo '<option value="' . $rowDia['dia'] . '">' . $rowDia['dia'] . '</option>';
     }
     ?>
 </select>

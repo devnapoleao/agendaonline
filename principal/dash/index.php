@@ -81,7 +81,7 @@ $caminhoLogo = obterCaminhoLogo($emailUsuario);
     
     <!-- Exibe a logomarca -->
     <img src="<?php echo $caminhoLogo; ?>" alt="Logomarca" width="200">
-    
+    <br>
     <!-- Botão estilizado -->
     <a class="btn" href="indique.php">Indique e Ganhe</a>
     
