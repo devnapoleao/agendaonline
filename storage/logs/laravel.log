@@ -1,0 +1,17 @@
+[2023-12-01 22:11:45] local.ERROR: Command "server" is not defined.
+
+Did you mean one of these?
+    make:observer
+    serve {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): Command \"server\" is not defined.
+
+Did you mean one of these?
+    make:observer
+    serve at C:\\Users\\conta\\OneDrive\\Documentos\\code\\app_super_gestao\\vendor\\symfony\\console\\Application.php:720)
+[stacktrace]
+#0 C:\\Users\\conta\\OneDrive\\Documentos\\code\\app_super_gestao\\vendor\\symfony\\console\\Application.php(259): Symfony\\Component\\Console\\Application->find()
+#1 C:\\Users\\conta\\OneDrive\\Documentos\\code\\app_super_gestao\\vendor\\symfony\\console\\Application.php(171): Symfony\\Component\\Console\\Application->doRun()
+#2 C:\\Users\\conta\\OneDrive\\Documentos\\code\\app_super_gestao\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php(93): Symfony\\Component\\Console\\Application->run()
+#3 C:\\Users\\conta\\OneDrive\\Documentos\\code\\app_super_gestao\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(129): Illuminate\\Console\\Application->run()
+#4 C:\\Users\\conta\\OneDrive\\Documentos\\code\\app_super_gestao\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle()
+#5 {main}
+"} 
