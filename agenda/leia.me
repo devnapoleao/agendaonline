@@ -1,0 +1,27 @@
+CREATE TABLE EMPRESA (
+    id_empresa INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    nome VARCHAR(255) NOT NULL,
+    senha VARCHAR(255) NOT NULL,
+    imagem_fundo VARCHAR(255) DEFAULT NULL
+);
+
+CREATE TABLE CLIENTE (
+    id_cliente INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    nome VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE HORARIOS (
+    id_horario INT AUTO_INCREMENT PRIMARY KEY,
+    id_empresa INT NOT NULL,
+    id_cliente INT,
+    email VARCHAR(255),
+    cliente VARCHAR(255),
+    ALTER TABLE HORARIOS
+    ADD COLUMN dia DATE,
+    ADD COLUMN horario TIME,
+    status TINYINT NOT NULL DEFAULT 0,
+    FOREIGN KEY (id_empresa) REFERENCES EMPRESA(id_empresa),
+    FOREIGN KEY (id_cliente) REFERENCES CLIENTE(id_cliente)
+);
